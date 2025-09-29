@@ -1,0 +1,28 @@
+<p>facture works!</p>
+
+<div class="container">
+    <h2>Facture Details</h2>
+    <p><strong>Client: {{ facture.client }}</strong></p>
+    <table class="table table-bordered">
+        <thead class="thead-light">
+            <tr>
+                <th>Reference</th>
+                <th>Marque</th>
+                <th>Prix Unitaire</th>
+                <th>Quantité</th>
+                <th>Prix Ligne</th>
+            </tr>
+        </thead>
+        <tbody class="table-group-divider">
+            <tr *ngFor="let ligne of facture.lignes">
+                <td>{{ ligne.item.reference }}</td>
+                <td>{{ ligne.item.marque }}</td>
+                <td>{{ ligne.item.prixUnitaire }}</td>
+                <td>{{ ligne.quantite }}</td>
+                <td>{{ ligne.prixLigne() }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Total Price: {{ facture.prixtotal() }}</h3>
+</div>
