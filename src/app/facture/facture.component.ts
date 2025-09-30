@@ -43,4 +43,24 @@ export class FactureComponent {
       return this.facture.lignes.reduce((total, ligne) => total + ligne.prixLigne(), 0);
     }
   };
+
+  newItem: Item = {
+  reference: '',
+  marque: '',
+  prixUnitaire: 0
+  };
+
+  newLigne: Ligne = {
+    item: this.newItem,
+    quantite: 0,
+    prixLigne() { return this.item.prixUnitaire * this.quantite; }
+  };
+
+  addItem() {
+    
+    this.facture.lignes.push({ ...this.newLigne });
+
+    this.newItem = { reference: '', marque: '', prixUnitaire: 0 };
+    this.newLigne = { item: this.newItem, quantite: 0, prixLigne: () => 0 };
+  }
 }
